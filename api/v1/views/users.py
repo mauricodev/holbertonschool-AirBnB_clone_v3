@@ -50,7 +50,7 @@ def users_by_id(user_id):
         user = storage.get(User, user_id)
         if user is None:
             return jsonify(err), 404
-        return jsonify(user.to_dict())
+        return jsonify(user.to_dict()), 200
     elif request.method == 'DELETE':
         user = storage.get(User, user_id)
         if user is None:
