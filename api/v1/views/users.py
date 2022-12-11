@@ -66,10 +66,6 @@ def users_by_id(user_id):
         request_data = request.get_json(silent=True)
         if request_data is None or not isinstance(request_data, dict):
             return 'Not a JSON', 400
-        if 'email' not in request_data.keys():
-            return 'Missing email', 400
-        if 'password' not in request_data.keys():
-            return 'Missing password', 400
         for k, v in request_data.items():
             if k == 'id' or k == 'email':
                 continue
