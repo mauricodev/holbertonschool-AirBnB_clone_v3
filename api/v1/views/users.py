@@ -15,7 +15,7 @@ from models import storage
 from models.user import User
 
 
-@app_views.route("/user", methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route("/users", methods=['GET', 'POST'], strict_slashes=False)
 def users():
     """GET/POST all the Users"""
     if request.method == 'GET':
