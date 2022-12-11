@@ -119,8 +119,9 @@ class TestFileStorage(unittest.TestCase):
         """Test that get properly returns a request object"""
         storage = FileStorage()
         user = User(name="example1")
-        user.save()
-        self.assertEqual(storage.get("User", user.id), user)
+        storage.new(user)
+        storage.save()
+        self.assertEqual(storage.get(User, user.id), user)
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_count_all(self):
