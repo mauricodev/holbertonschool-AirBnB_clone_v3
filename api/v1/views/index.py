@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Create routes:
+    /status: returns a JSON status response
+"""
 from api.v1.views import app_views
 from flask import jsonify
 
