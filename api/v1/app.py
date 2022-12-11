@@ -2,7 +2,7 @@
 """
 Starts a Flask web application with blueprint
 """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -16,7 +16,7 @@ def error404(e):
     res = {
         "error": "Not found"
     }
-    return (jsonify(res))
+    return (jsonify(res)), 404
 
 
 @app.teardown_appcontext
