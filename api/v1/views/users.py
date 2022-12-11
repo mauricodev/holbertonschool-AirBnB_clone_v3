@@ -41,7 +41,7 @@ def users():
 
 @app_views.route("/users/<user_id>", methods=[
     'GET', 'DELETE', 'PUT'], strict_slashes=False)
-def amenities_by_id(user_id):
+def users_by_id(user_id):
     """GET/DELETE/PUT a User by id"""
     err = {
         "error": "Not found"
