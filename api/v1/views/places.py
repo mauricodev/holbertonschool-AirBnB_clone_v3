@@ -40,7 +40,9 @@ def places_by_id(place_id):
         if request_data is None or not isinstance(request_data, dict):
             return 'Not a JSON', 400
         for k, v in request_data.items():
-            if k == 'id' or k == 'created_at' or k == 'updated_at':
+            if k == 'id' or k == 'user_id' or k == 'city_id':
+                continue
+            if k == 'created_at' or k == 'updated_at':
                 continue
             setattr(place, k, v)
         storage.new(place)
