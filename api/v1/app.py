@@ -2,7 +2,7 @@
 """
 Starts a Flask web application with blueprint
 """
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -11,8 +11,16 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
+@app.errorhandler(404)
+def error404(e):
+    res = {
+        "error": "Not found"
+    }
+    return (jsonify(res))
+
+
 @app.teardown_appcontext
-def teardown_db(exception):
+def teardown_db(exc):
     """closes the storage on teardown"""
     storage.close()
 
