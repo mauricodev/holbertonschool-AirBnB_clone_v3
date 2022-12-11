@@ -1,4 +1,14 @@
 #!/usr/bin/python3
+"""
+Create routes:
+    /states:
+        - GET: Returns all the states in JSON format.
+        - POST: Submits a state in JSON format. Returns the new State.
+    /states/<state_id>: returns the number of each objects by type
+        - GET: Returns a state by id in JSON format.
+        - DELETE: Deletes a State by id. Returns {} in success.
+        - PUT: Modify a state by id. Returns the modified State.
+"""
 from api.v1.views import app_views
 from flask import jsonify, request
 from models import storage
