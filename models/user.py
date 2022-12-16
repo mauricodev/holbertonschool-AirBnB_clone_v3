@@ -2,7 +2,6 @@
 """ holds class User"""
 import models
 from models.base_model import BaseModel, Base
-from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
@@ -28,7 +27,14 @@ class User(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes user"""
         super().__init__(*args, **kwargs)
-        if kwargs:
-            if kwargs.get("password", None) and type(self.password) is str:
-                encode_pwd = kwargs['password'].encode()
-                self.password = md5(encode_pwd).hexdigest()
+
+    @property
+    def password(self):
+        """Getter for password"""
+        return self.__dict__["password"]
+
+    @password.setter
+    def password(self, pwd):
+        """Setter for password"""
+        pwd_encoded = pwd.encode()
+        self.__dict__["password"] = md5(pwd_encoded).hexdigest()
