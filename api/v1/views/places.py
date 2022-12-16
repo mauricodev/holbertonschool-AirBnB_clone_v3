@@ -127,12 +127,12 @@ def places_search():
         if st_exists and ct_exists:
             if st_empty and ct_empty:
                 result = all_places
-        else:
+        elif not st_exists and not ct_exists:
             result = all_places
 
         cities_id = []
-        if 'states' in request_data:
-            if len(request_data['states']) > 0:
+        if st_exists:
+            if not st_empty:
                 for st_id in request_data['states']:
                     state = storage.get(State, st_id)
                     for city in state.cities:
@@ -142,8 +142,8 @@ def places_search():
                             if place.city_id == ct_id:
                                 result.append(place.to_dict())
 
-        if 'cities' in request_data:
-            if len(request_data['cities']) > 0:
+        if ct_exists:
+            if not ct_empty:
                 for ct_id in request_data['cities']:
                     if ct_id in cities_id:
                         continue
