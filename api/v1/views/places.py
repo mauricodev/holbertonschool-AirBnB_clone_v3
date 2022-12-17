@@ -137,9 +137,8 @@ def places_search():
                     state = storage.get(State, st_id)
                     for city in state.cities:
                         cities_id.append(city.id)
-                    for ct_id in cities_id:
                         for place in places.values():
-                            if place.city_id == ct_id:
+                            if place.city_id == city.id:
                                 result.append(place.to_dict())
 
         if ct_exists:
